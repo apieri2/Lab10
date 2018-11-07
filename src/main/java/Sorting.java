@@ -33,7 +33,17 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] bubbleSort(final int[] array) {
-        return null;
+        int[] a = array;
+        for (int j = a.length - 2; j >= 0; j--) {
+            for (int i = 0; i <= j; i++) {
+                if (a[i] > a[i + 1]) {
+                    int temp = a[i + 1];
+                    a[i + 1] = a[i];
+                    a[i] = temp;
+                }
+            }
+        }
+        return a;
     }
 
     /**
@@ -44,7 +54,21 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] selectionSort(final int[] array) {
-        return null;
+        int[] a = array;
+        for (int i = 0; i < a.length; i++) {
+            int minimum = a[i];
+            int index = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] < minimum) {
+                    minimum = a[j];
+                    index = j;
+                }
+            }
+            int temp = a[index];
+            a[index] = a[i];
+            a[i] = temp;
+        }
+        return a;
     }
 
     /**
@@ -55,7 +79,21 @@ public class Sorting {
      */
     @SuppressWarnings("unused")
     private static int[] mergeSort(final int[] array) {
-        return null;
+        if (array.length <= 1) {
+            return array;
+        }
+        int middle = array.length / 2 - 1;
+
+        int[] first = new int[middle + 1];
+        int[] second = new int[array.length - middle - 1];
+        for (int i = 0; i < array.length; i++) {
+            if (i <= middle) {
+                first[i] = array[i];
+            } else {
+                second[i - (middle + 1)] = array[i];
+            }
+        }
+        return merge(mergeSort(first), mergeSort(second));
     }
 
     /**
